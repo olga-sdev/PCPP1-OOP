@@ -1,7 +1,7 @@
 # PCPP1-OOP
 
 
-Scope of the project:
+Scope of the edube project:
 
 * Classes, instances, attributes, methods, as well as working with class and instance data;
   
