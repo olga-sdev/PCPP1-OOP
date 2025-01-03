@@ -1,4 +1,4 @@
-'''
+"""
 In Python everything is an object (functions, modules, lists, etc.).
 
 * class — an idea, blueprint, or recipe for an instance;
@@ -8,7 +8,7 @@ In Python everything is an object (functions, modules, lists, etc.).
 * method — a function built into a class that is executed on behalf of the class or object;
 some say that it’s a 'callable attribute';
 * type — refers to the class that was used to instantiate the object.
-'''
+"""
 
 
 class SmartPhone:

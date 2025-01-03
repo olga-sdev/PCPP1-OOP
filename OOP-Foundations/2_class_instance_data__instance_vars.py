@@ -1,8 +1,8 @@
-'''
+"""
 Python allows for variables to be used at the instance level or the class level:
 Variables at the instance level -> instance variables.
 During the object's initialization, performed by the __init__ method, or later at any moment of the object's life.
-'''
+"""
 
 
 class Application:

@@ -1,4 +1,4 @@
-'''
+"""
 Working with class and instance data – the LAB
 
 Objectives:
@@ -21,7 +21,7 @@ the total weight of the apples processed; stored as a class variable.
 Assume that each apple's weight is random, and can vary between 0.2 and 0.5 of an imaginary weight unit;
 
 Hint: Use a random.uniform(lower, upper) function to create a random number between the lower and upper float values.
-'''
+"""
 
 import random
 
