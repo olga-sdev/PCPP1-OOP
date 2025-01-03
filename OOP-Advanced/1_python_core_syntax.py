@@ -31,3 +31,28 @@ if len('Python') == 'Python'.__len__():
     print(f'Statement "{statement}" is True')
 else:
     print(f'Statement "{statement}" is False')
+
+
+# Example with the Class and methods
+class ProjectRole:
+    def __init__(self, salary, bonus):
+        self.salary = salary
+        self.bonus = bonus
+
+    def __add__(self, other):
+        return self.salary + other.salary
+
+    def __str__(self):
+        return str(self.salary)
+
+    @staticmethod
+    def sum_total_salaries(*args):
+        total_project_cost = sum(arg.salary for arg in args)
+        return total_project_cost
+
+
+dev = ProjectRole(105, 10)
+po = ProjectRole(110, 7)
+sm = ProjectRole(90, 5)
+
+print(ProjectRole.sum_total_salaries(dev, po, sm))
