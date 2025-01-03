@@ -1,4 +1,4 @@
-'''
+"""
 Classes, Instances, Attributes, Methods — the LAB
 
 Objectives
@@ -23,7 +23,7 @@ mobile phone 01632-960012 is turned on
 calling 555-34343
 mobile phone is turned off
 mobile phone is turned off
-'''
+"""
 
 
 class MobilePhone:

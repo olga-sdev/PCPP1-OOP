@@ -1,4 +1,4 @@
-'''
+"""
 Class variables are defined in the class construction.
 Available before class instance is created.
 Get access to a class variable -> with the class name, then provide the variable name.
@@ -7,7 +7,7 @@ Class var stores metadata relevant to the class:
 
 * fixed information like description, configuration, or identification values;
 * mutable info like the number of instances created.
-'''
+"""
 
 
 class Application:

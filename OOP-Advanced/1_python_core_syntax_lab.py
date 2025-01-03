@@ -39,7 +39,6 @@ Test data:
 the time interval (tti) is hours=21, minutes=58, seconds=50
 the expected result of addition (tti + 62) is 21:59:52
 the expected result of subtraction (tti - 62) is 21:57:48
-
 """
 
 
