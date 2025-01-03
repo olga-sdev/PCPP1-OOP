@@ -26,9 +26,21 @@ the expected result of multiplication (fti * 2) is 43:57:40
 
 you can use the assert statement to validate if the output of the __str__ method
 applied to a time interval object equals the expected value.
-"""
 
-from datetime import timedelta
+Scenario
+Extend the class implementation prepared in the previous lab to support the addition and subtraction of integers
+to time interval objects;
+to add an integer to a time interval object means to add seconds;
+to subtract an integer from a time interval object means to remove seconds.
+
+in the case when a special method receives an integer type argument, instead of a time interval object, create a new time interval object based on the integer value.
+Test data:
+
+the time interval (tti) is hours=21, minutes=58, seconds=50
+the expected result of addition (tti + 62) is 21:59:52
+the expected result of subtraction (tti - 62) is 21:57:48
+
+"""
 
 
 class TimeInterval:
@@ -52,19 +64,32 @@ class TimeInterval:
         return hours, minutes, remaining_seconds
 
     def __add__(self, other):
-        sum_seconds = self.convert_time_to_seconds() + other.convert_time_to_seconds()
+        if isinstance(other, TimeInterval):
+            sum_seconds = self.convert_time_to_seconds() + other.convert_time_to_seconds()
+        elif isinstance(other, int):
+            sum_seconds = self.convert_time_to_seconds() + other
+        else:
+            raise TypeError
         calc_time = self.convert_seconds_to_time(sum_seconds)
         calc_time_str = f'{calc_time[0]}:{calc_time[1]}:{calc_time[2]}'
         return calc_time_str
 
     def __sub__(self, other):
-        sub_seconds = self.convert_time_to_seconds() - other.convert_time_to_seconds()
+        if isinstance(other, TimeInterval):
+            sub_seconds = self.convert_time_to_seconds() - other.convert_time_to_seconds()
+        elif isinstance(other, int):
+            sub_seconds = self.convert_time_to_seconds() - other
+        else:
+            raise TypeError
         calc_time = self.convert_seconds_to_time(sub_seconds)
         calc_time_str = f'{calc_time[0]}:{calc_time[1]}:{calc_time[2]}'
         return calc_time_str
 
     def __mul__(self, num):
-        mul_seconds = self.convert_time_to_seconds() * num
+        if isinstance(num, int):
+            mul_seconds = self.convert_time_to_seconds() * num
+        else:
+            raise TypeError
         calc_time = self.convert_seconds_to_time(mul_seconds)
         calc_time_str = f'{calc_time[0]}:{calc_time[1]}:{calc_time[2]}'
         return calc_time_str
@@ -79,3 +104,6 @@ sti = TimeInterval(1, 45, 22)
 print(fti + sti)
 print(fti - sti)
 print(fti * 2)
+tti = TimeInterval(21, 58, 50)
+print(tti + 62)
+print(tti - 62)
