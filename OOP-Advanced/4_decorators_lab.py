@@ -32,5 +32,15 @@ def mul_nums(a, b):
 
 
 day = datetime.now().day
-add_nums(day, 7)
-mul_nums(37, 365)
+week = 7
+age = 37
+days_in_year = 365
+
+add_nums(day, week)
+mul_nums(age, days_in_year)
+
+# 2025-01-06 20:38:42
+# 13
+# 2025-01-06 20:38:42
+# 13505
+
