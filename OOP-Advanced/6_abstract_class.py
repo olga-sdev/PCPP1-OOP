@@ -26,6 +26,13 @@ class ChimingClock(Clock):
         print(datetime.now().strftime('%H:%M:%S'))
 
 
+class AlarmClock(Clock):
+    def alarming(self):
+        pass
+
+
 ChimingClock().show_time()
+AlarmClock().alarming()
 
 # 23:17:12
+# TypeError: Can't instantiate abstract class AlarmClock without an implementation for abstract method 'show_time'
