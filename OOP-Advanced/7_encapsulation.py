@@ -11,3 +11,33 @@ the name of designated method will be used as name of instance attribute corresp
 it should be defined before the method responsible for setting the value of the encapsulated attribute,
 and before the method responsible for deleting the encapsulated attribute.
 """
+
+
+class TemperatureError(Exception):
+    pass
+
+
+class Temperature:
+    def __init__(self, minimum):
+        self.minimum = minimum
+        self.__level = 0
+
+    @property
+    def level(self):
+        return self.__level
+
+    @level.setter
+    def level(self, temperature):
+        if temperature <= 0:
+            if temperature >= self.minimum:
+                self.__level = temperature
+            else:
+                raise TemperatureError('Too high level of temperature')
+        elif temperature > 0:
+            raise TemperatureError('Impossible to set high level temperature for fridge')
+
+    @level.deleter
+    def level(self):
+        if self.__level > 0:
+            print('Recommend to switch off the fridge')
+        self.__level = None
