@@ -17,7 +17,7 @@ class TemperatureError(Exception):
     pass
 
 
-class Temperature:
+class Freezer:
     def __init__(self, minimum):
         self.minimum = minimum
         self.__level = 0
@@ -32,12 +32,45 @@ class Temperature:
             if temperature >= self.minimum:
                 self.__level = temperature
             else:
-                raise TemperatureError('Too high level of temperature')
+                raise TemperatureError('Too minimum level of temperature for freezer')
         elif temperature > 0:
-            raise TemperatureError('Impossible to set high level temperature for fridge')
+            raise TemperatureError('Impossible to set high level temperature for freezer')
 
     @level.deleter
     def level(self):
         if self.__level > 0:
-            print('Recommend to switch off the fridge')
+            print('Recommend to switch off the freezer')
         self.__level = None
+
+
+# the fridge temperature has minimum level -18
+freezer = Freezer(-18)
+
+# set the current level of freezer
+freezer.level = -12
+
+# change the level for freezer - colder for 1°C
+freezer.level -= 1
+
+# set the level for freezer above 0 - it raises an error, cause there is no sense in freezer
+try:
+    freezer.level = 1
+except TemperatureError as tmp_err:
+    print('Trying to set the level for freezer above 0 that cause: ', tmp_err)
+
+# set the level for freezer that is does not support
+try:
+    freezer.level = -19
+except TemperatureError as tmp_err:
+    print('Trying to set the level for freezer that it does not support')
+
+print(f'Current temperature for freezer is: {freezer.level}')
+
+del freezer.level
+
+print(f'Current temperature for freezer after cleanup is: {freezer.level}')
+
+# Trying to set the level for freezer above 0 that cause:  Impossible to set high level temperature for freezer
+# Trying to set the level for freezer that it does not support
+# Current temperature for freezer is: -13
+# Current temperature for freezer after cleanup is: None
