@@ -4,6 +4,11 @@ Python gives you the ability to create a class that inherits properties from any
 a new class that can enrich the parent's attributes or methods.
 As a result, your newly-created class has the advantage of all of the well-known functionalities inherited from its
 parent or even parents and you can still access those attributes and methods.
+
+Python allows you to subclass any built-in class such as a list, tuple, dictionary, and many others;
+by subclassing the built-ins, you can easily adapt generics to provide more sophisticated features;
+by subclassing the built-ins, you can modify only the parts (methods, attributes) that you intend to modify,
+ while all remaining parts will behave as good old built-ins.
 """
 
 
@@ -78,4 +83,5 @@ print('\n'.join(monitor.log))
 # Monitor: {'model': 'Oppo', 'memory': 128}
 # 2025-01-16 (02:33:51.007759): DictionaryMonitorUpdates created
 # 2025-01-16 (02:33:51.007759): dictionary {'memory': 128} updated
+
 
