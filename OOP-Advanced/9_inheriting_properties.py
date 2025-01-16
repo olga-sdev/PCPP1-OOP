@@ -7,6 +7,7 @@ parent or even parents and you can still access those attributes and methods.
 """
 
 
+# Example 1: Lists
 class RemoveDataStructures(list):
 
     @staticmethod
@@ -45,3 +46,36 @@ print(f'The updated list: {list_of_values}')
 # The b is a <class 'str'>
 # The False is a <class 'bool'>
 # [1, 'a', 'b', False]
+
+
+# Example 2 - Dictionaries
+from datetime import datetime
+
+
+class DictionaryMonitorUpdates(dict):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.log = list()
+        self.logging_time('DictionaryMonitorUpdates created')
+
+    def update(self, __m, **kwargs):
+        super().update(__m)
+        self.logging_time(f'dictionary {__m} updated')
+
+    def logging_time(self, notification):
+        log_time = datetime.now().strftime("%Y-%m-%d (%H:%M:%S.%f)")
+        self.log.append(f'{log_time}: {notification}')
+
+
+monitor = DictionaryMonitorUpdates()
+monitor['model'] = 'Oppo'
+
+monitor.update({'memory': 128})
+print(f'Monitor: {monitor}')
+print('\n'.join(monitor.log))
+
+
+# Monitor: {'model': 'Oppo', 'memory': 128}
+# 2025-01-16 (02:33:51.007759): DictionaryMonitorUpdates created
+# 2025-01-16 (02:33:51.007759): dictionary {'memory': 128} updated
+
