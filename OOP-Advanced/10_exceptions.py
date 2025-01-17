@@ -26,7 +26,10 @@ Attributes of exception instances:
 * the __context__ attribute, which is inherent for implicitly chained exceptions;
 * the __cause__ attribute, which is inherent for explicitly chained exceptions.
 
-
+Traceback attribute:
+using tracebacks can enhance the debugging process and make error resolution much quicker and more efficient.
+* format_tb() method delivered - helps get a list of strings describing the traceback.
+* print_tb() method to print strings directly to the standard output.
 """
 
 # Example_1: ImportError
@@ -105,7 +108,7 @@ def check_application():
 
 def test_check():
     try:
-        print(f'Test is completed in {100/0}%')
+        print(f'Test is completed in {100 / 0}%')
     except ZeroDivisionError as zero_err:
         raise ApplicationIsNotFull('Test is not started yet') from zero_err
 
@@ -129,3 +132,39 @@ for check in check_list:
 # CV True
 # General exception Application is not completed caused by 'work_permission'
 # General exception Test is not started yet caused by division by zero
+
+
+# Example: Traceback
+import traceback
+
+
+class ApplicationIsNotFull(Exception):
+    pass
+
+
+def check_application():
+    try:
+        print('Name', job_application['name'])
+        print('Title', job_application['title'])
+        print('CV', job_application['cv'])
+    except KeyError as key_e:
+        raise ApplicationIsNotFull('Application is not completed') from key_e
+
+
+job_app = {
+    'name': 'Olga',
+    'title': 'QA Engineer'
+}
+
+try:
+    check_application()
+except ApplicationIsNotFull as app_e:
+    print(app_e.__traceback__, type(app_e.__traceback__))
+    print(f'Traceback details:\n {traceback.format_tb(app_e.__traceback__)}')
+
+
+# Name Olga
+# Title QA Engineer
+# <traceback object at 0x7f782aadd500> <class 'traceback'>
+# Traceback details:
+#  ['  File "main.py", line 45, in check_application\n    raise ApplicationIsNotFull(\'Application is not completed\') from key_e\n']
