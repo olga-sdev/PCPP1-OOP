@@ -72,3 +72,26 @@ print(deep_list)  # [0, 3, [2]] affects the copied list
 deep_list[2][0] = 10
 print(list_of_numbers)  # [[1], 3, [2]] - does not affect the original list
 print(deep_list)  # [0, 3, [10]] - affects the copied list
+
+
+# deepcopy() for dictionary
+
+import copy
+
+music_band_dict = {
+    'name': 'Kaleo',
+    'songs': ['Save Yourself', 'Automobile']
+    }
+copied_band_dict = copy.deepcopy(music_band_dict)
+print('Memory chunks:', id(music_band_dict), id(copied_band_dict))
+print('Same memory chunk?', music_band_dict is copied_band_dict)
+print("Let's modify the list")
+music_band_dict['songs'].append('Vor i Vaglaskogi')
+print(music_band_dict['songs'])
+print(copied_band_dict['songs'])
+
+# Memory chunks: 140544517551440 140544516840256
+# Same memory chunk? False
+# Let's modify the list
+# ['Save Yourself', 'Automobile', 'Vor i Vaglaskogi']
+# ['Save Yourself', 'Automobile']
