@@ -13,6 +13,9 @@ If 2 vars referring to the same object -> id() function is the same.
 
 '==' -> value equality
 'is' -> identity equality
+
+list[:] is a handy trick to create a shallow copy of a list:
+list[:] slices the entire list from start to end, creating a new list with the same elements as the original one.
 """
 
 my_list_1 = ['Data', None, 1]
@@ -30,3 +33,14 @@ print(f'identities for lists are equal: {my_list_2 == my_list_3}')
 # id of my_list_3 is 1841391211072
 # values for lists are equal: True
 # identities for lists are equal: True
+
+
+# shallow copy
+list_of_numbers = [1, 3, 2]
+shallow_list = list_of_numbers[:]
+print(list_of_numbers, id(list_of_numbers)) # [1, 3, 2] 2353593231104
+print(shallow_list, id(shallow_list)) # [1, 3, 2] 2353588692224
+
+shallow_list.pop()
+print(list_of_numbers) # [1, 3, 2]
+print(shallow_list) # [1, 3]
