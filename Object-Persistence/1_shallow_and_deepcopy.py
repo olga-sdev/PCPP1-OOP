@@ -16,6 +16,12 @@ If 2 vars referring to the same object -> id() function is the same.
 
 list[:] is a handy trick to create a shallow copy of a list:
 list[:] slices the entire list from start to end, creating a new list with the same elements as the original one.
+To make an independent copy of a compound object (list, dictionary, custom class instance) -> use of deepcopy()
+
+3 ways of copying a large compound object:
+* simple reference copy;
+* shallow copy -> slower than the previous code
+* deep copy-> most comprehensive operation
 """
 
 my_list_1 = ['Data', None, 1]
