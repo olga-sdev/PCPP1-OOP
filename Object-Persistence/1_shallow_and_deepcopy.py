@@ -95,3 +95,25 @@ print(copied_band_dict['songs'])
 # Let's modify the list
 # ['Save Yourself', 'Automobile', 'Vor i Vaglaskogi']
 # ['Save Yourself', 'Automobile']
+
+
+# example with cls
+
+import copy
+
+
+class Files:
+    def __init__(self):
+        self.format = ['pdf', 'docs', 'py', 'ods']
+
+
+files = Files()
+my_files = copy.deepcopy(files)
+print('same memory chunk?', files is my_files)
+my_files.format.pop()
+print(files.format)
+print(my_files.format)
+
+# same memory chunk? False
+# ['pdf', 'docs', 'py', 'ods']
+# ['pdf', 'docs', 'py']
