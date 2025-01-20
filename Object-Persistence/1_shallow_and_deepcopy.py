@@ -56,5 +56,19 @@ print(list_of_numbers)  # [[1], 3, [10]] - affects the original list
 print(shallow_list)  # [0, 3, [10]] - affects the copied list
 
 
-# deep copy
+# deep copy -> deepcopy() method
+import copy
 
+
+list_of_numbers = [[1], 3, [2]]
+deep_list = copy.deepcopy(list_of_numbers)
+print(list_of_numbers, id(list_of_numbers))  # [[1], 3, 2] 2183105045760
+print(deep_list, id(deep_list))  # [[1], 3, 2] 2183104910272
+
+deep_list[0] = 0
+print(list_of_numbers)  # [[1], 3, [2]] does not affect the original list
+print(deep_list)  # [0, 3, [2]] affects the copied list
+
+deep_list[2][0] = 10
+print(list_of_numbers)  # [[1], 3, [2]] - does not affect the original list
+print(deep_list)  # [0, 3, [10]] - affects the copied list
