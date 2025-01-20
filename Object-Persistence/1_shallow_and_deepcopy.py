@@ -36,11 +36,19 @@ print(f'identities for lists are equal: {my_list_2 == my_list_3}')
 
 
 # shallow copy
-list_of_numbers = [1, 3, 2]
+list_of_numbers = [[1], 3, [2]]
 shallow_list = list_of_numbers[:]
-print(list_of_numbers, id(list_of_numbers)) # [1, 3, 2] 2353593231104
-print(shallow_list, id(shallow_list)) # [1, 3, 2] 2353588692224
+print(list_of_numbers, id(list_of_numbers))  # [[1], 3, 2] 2183105045760
+print(shallow_list, id(shallow_list))  # [[1], 3, 2] 2183104910272
 
-shallow_list.pop()
-print(list_of_numbers) # [1, 3, 2]
-print(shallow_list) # [1, 3]
+shallow_list[0] = 0
+print(list_of_numbers)  # [[1], 3, [2]] does not affect the original list
+print(shallow_list)  # [0, 3, [2]] affects the copied list
+
+shallow_list[2][0] = 10
+print(list_of_numbers)  # [[1], 3, [10]] - affects the original list
+print(shallow_list)  # [0, 3, [10]] - affects the copied list
+
+
+# deep copy
+
