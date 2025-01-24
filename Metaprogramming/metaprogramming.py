@@ -21,4 +21,20 @@ The typical use cases for metaclasses:
 * automatically adding new methods;
 * automatically adding new variables.
 
+Special attributes:
+__name__  – inherent for classes; contains the name of the class;
+__class__ – inherent for both cls and instances; contains info about the class to which a cls instance belongs;
+__bases__ – inherent for classes; it’s a tuple and contains information about the base classes of a class;
+__dict__  – inherent for both classes and instances; contains a dictionary of the object's attributes.
+
 """
+
+elements = [123, False, 'ABC']
+
+for element in elements:
+    print(element, 'is: ', element.__class__, '; type: ', type(element))
+
+# 123 is:  <class 'int'> ; type:  <class 'int'>
+# False is:  <class 'bool'> ; type:  <class 'bool'>
+# ABC is:  <class 'str'> ; type:  <class 'str'>
+
