@@ -53,7 +53,7 @@ print('The class is based on:', Laptop.__bases__)
 print('The class attributes are:', Laptop.__dict__)
 
 
-# 
+# example that dynamically creates a fully functional class
 def memory(self):
     print(f'{128} GB')
 
@@ -79,3 +79,27 @@ lp = Laptop()
 lp.switch_on()
 lp.memory()
 
+
+# Create metaclass responsible for completing classes with a method (if missing) to ensure that all your classes are equipped with a method named 'status':
+def status(self):
+    print('Check Status Function')
+
+class My_Meta(type):
+    def __new__(mcs, name, bases, dictionary):
+        if 'status' not in dictionary:
+            dictionary['status'] = status
+        obj = super().__new__(mcs, name, bases, dictionary)
+        return obj
+
+class Medical_Order(metaclass=My_Meta):
+    pass
+
+class Grocery_Order(metaclass=My_Meta):
+    def status(self):
+        print('Delivered')
+
+# metaclasses can control the process of class instantiation, and adjust created classes to conform with selected rules:
+med = Medical_Order()
+med.status()
+groc = Grocery_Order()
+groc.status()
