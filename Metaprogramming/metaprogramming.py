@@ -39,9 +39,15 @@ for element in elements:
 # ABC is:  <class 'str'> ; type:  <class 'str'>
 
 
+# type() function is called with three arguments 'Laptop', (), {} -> dynamically created a new class
 Laptop = type('Laptop', (), {})
 
+# the argument 'Laptop' specifies the class name; this value becomes the __name__ attribute of the class:
 print('The class name is:', Laptop.__name__)
 print('The class is an instance of:', Laptop.__class__)
+
+# the argument specifies a tuple () of the base classes from which the newly created class is inherited; this argument becomes the __bases__ attribute of the class
 print('The class is based on:', Laptop.__bases__)
+
+# the argument specifies a dictionary {} containing method definitions and variables for the class body; the elements of this argument become the __dict__ attribute of the class and state the class namespace
 print('The class attributes are:', Laptop.__dict__)
