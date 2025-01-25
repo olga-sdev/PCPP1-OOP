@@ -51,3 +51,31 @@ print('The class is based on:', Laptop.__bases__)
 
 # the argument specifies a dictionary {} containing method definitions and variables for the class body; the elements of this argument become the __dict__ attribute of the class and state the class namespace
 print('The class attributes are:', Laptop.__dict__)
+
+
+# 
+def memory(self):
+    print(f'{128} GB')
+
+class Device:
+    def switch_on(self):
+        print('switched on')
+
+# after the class instruction has been identified and the class body has been executed, the class = type(, , ) code is executed
+Laptop = type('Laptop', (Device, ), {'model':'hp', 'memory':memory})
+
+print('The class name is:', Laptop.__name__)
+print('The class is an instance of:', Laptop.__class__)
+print('The class is based on:', Laptop.__bases__)
+print('The class attributes are:', Laptop.__dict__)
+
+"""
+the type is responsible for calling the __call__ method upon class instance creation; this method calls two other methods:
+__new__(), responsible for creating the class instance in the computer memory; this method is run before __init__();
+__init__(), responsible for object initialization.
+"""
+
+lp = Laptop()
+lp.switch_on()
+lp.memory()
+
