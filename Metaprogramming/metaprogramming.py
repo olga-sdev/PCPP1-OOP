@@ -38,3 +38,10 @@ for element in elements:
 # False is:  <class 'bool'> ; type:  <class 'bool'>
 # ABC is:  <class 'str'> ; type:  <class 'str'>
 
+
+Laptop = type('Laptop', (), {})
+
+print('The class name is:', Laptop.__name__)
+print('The class is an instance of:', Laptop.__class__)
+print('The class is based on:', Laptop.__bases__)
+print('The class attributes are:', Laptop.__dict__)
