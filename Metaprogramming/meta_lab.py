@@ -10,7 +10,8 @@ the system suffers from a problem: we don’t know in which order the classes ar
 
 your task is to prepare a metaclass that is responsible for:
 equipping all newly instantiated classes with time stamps, persisted in a class attribute named instantiation_time;
-equipping all newly instantiated classes with the get_instantiation_time() method. The method should return the value of the class attribute instantiation_time.
+equipping all newly instantiated classes with the get_instantiation_time() method.
+The method should return the value of the class attribute instantiation_time.
 * The metaclass should have its own class variable (a list) that contains a list of the names of the classes instantiated by the metaclass
 (tip: append the class name in the __new__ method).
 
@@ -27,14 +28,21 @@ def get_instantiation_time(self):
 
 
 class My_Meta(type):
+    classes = []
     def __new__(mcs, name, bases, dictionary):
         if 'instantiation_time' not in dictionary:
             dictionary['instantiation_time'] = get_instantiation_time
+        mcs.classes.append(name)
         obj = super().__new__(mcs, name, bases, dictionary)
         return obj
 
+    @classmethod
+    def list_classes(cls):
+        return cls.classes
+
 class Medical_Order(metaclass=My_Meta):
     pass
+
 
 class Grocery_Order(metaclass=My_Meta):
     def get_instantiation_time(self):
@@ -46,3 +54,10 @@ med = Medical_Order()
 print(med.instantiation_time())
 groc = Grocery_Order()
 print(groc.get_instantiation_time())
+
+
+print(My_Meta.list_classes())
+
+# 1737842932.7208083
+# 1737842932.7208083
+# ['Medical_Order', 'Grocery_Order']
